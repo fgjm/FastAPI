@@ -1,0 +1,22 @@
+version: "3.9"
+services:    
+    encargos:        
+        build: .
+        ports:
+            - "5003:5003"
+        links: 
+            - mongodb             
+    mongodb:        
+        image: mongo
+        ports:
+            - "27017:27017"
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=orderadmin
+            - MONGO_INITDB_ROOT_PASSWORD=tu_password
+        volumes:
+            - mongo-data:/data/db
+            # mysql -> /var/lib/mysql
+            #postgres -> /var/lib/postgresql/data
+
+volumes:
+    mongo-data:
